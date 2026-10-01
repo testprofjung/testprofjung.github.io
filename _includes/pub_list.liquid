@@ -1,0 +1,62 @@
+{%- comment -%}
+  연구실적 목록 (영문/국문 공용).
+  include.kind = "articles" → SCIE 논문 목록 (_papers/)
+  include.kind = "patents"  → 특허 목록 (_patents/)
+{%- endcomment -%}
+{%- assign lang = include.lang | default: 'en' -%}
+{%- assign list_kind = include.kind | default: 'articles' -%}
+{%- assign t = site.data.i18n[lang] -%}
+{%- if lang == 'ko' -%}{%- assign prefix = '/ko' -%}{%- else -%}{%- assign prefix = '' -%}{%- endif -%}
+{%- assign url_articles = prefix | append: '/publications/' -%}
+{%- assign url_patents = prefix | append: '/patents/' -%}
+{%- if list_kind == 'patents' -%}
+  {%- assign groups = site.patents | sort: 'date' | reverse | group_by: 'year' -%}
+{%- else -%}
+  {%- assign groups = site.papers | sort: 'date' | reverse | group_by: 'year' -%}
+{%- endif -%}
+
+<nav class="pub-tabs">
+  <a href="{{ url_articles | relative_url }}"{% if list_kind == 'articles' %} class="is-current" aria-current="page"{% endif %}>{{ t.articles }} <span>{{ site.papers.size }}</span></a>
+  <a href="{{ url_patents | relative_url }}"{% if list_kind == 'patents' %} class="is-current" aria-current="page"{% endif %}>{{ t.patents }} <span>{{ site.patents.size }}</span></a>
+  <a class="admin-only pub-add" href="#" data-open-pub-admin><i class="fa-solid fa-plus"></i>
+    {% if list_kind == 'patents' %}{% if lang == 'ko' %}특허 추가{% else %}Add patent{% endif %}{% else %}{% if lang == 'ko' %}논문 추가{% else %}Add paper{% endif %}{% endif %}</a>
+</nav>
+
+{% if site.bib_search %}
+<script src="{{ '/assets/js/bibsearch.js' | relative_url | bust_file_cache }}" type="module"></script>
+<input type="text" id="bibsearch" spellcheck="false" autocomplete="off" class="search bibsearch-form-input" placeholder="{{ t.search_placeholder }}">
+{% endif %}
+
+<div class="publications">
+  {%- for g in groups %}
+  <h2 class="bibliography">{{ g.name }}</h2>
+  <ol class="bibliography">
+    {%- for p in g.items %}
+    {%- if list_kind == 'patents' %}
+    {% include patent.liquid p=p lang=lang %}
+    {%- else %}
+    {% include paper.liquid p=p %}
+    {%- endif %}
+    {%- endfor %}
+  </ol>
+  {%- endfor %}
+</div>
+
+{% if list_kind == 'patents' %}{% include pub_admin.liquid lang=lang kind="patent" %}{% else %}{% include pub_admin.liquid lang=lang kind="paper" %}{% endif %}
+
+<script>
+  // 예전 주소(…/publications/#articles, #patents) 처리:
+  // al-folio 검색 스크립트가 # 뒤 글자를 검색어로 넣기 전에 지우고, #patents 는 특허 페이지로 보냄
+  (function () {
+    var patentsUrl = {{ url_patents | relative_url | jsonify }};
+    function handle(e) {
+      var h = (location.hash || "").replace(/^#/, "");
+      if (h !== "articles" && h !== "patents") return;
+      if (e) e.stopImmediatePropagation();
+      if (h === "patents" && {{ list_kind | jsonify }} !== "patents") { location.replace(patentsUrl); return; }
+      history.replaceState(null, "", location.pathname + location.search);
+    }
+    handle(null);
+    window.addEventListener("hashchange", handle);
+  })();
+</script>

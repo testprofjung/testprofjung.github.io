@@ -11,8 +11,8 @@
     </header>
 
     <div class="pa-type" role="tablist">
-      <label><input type="radio" name="kind" value="paper" checked> {% if ko %}논문{% else %}Journal article{% endif %}</label>
-      <label><input type="radio" name="kind" value="patent"> {% if ko %}특허{% else %}Patent{% endif %}</label>
+      <label><input type="radio" name="kind" value="paper"{% unless include.kind == "patent" %} checked{% endunless %}> {% if ko %}SCIE 논문{% else %}SCIE journal article{% endif %}</label>
+      <label><input type="radio" name="kind" value="patent"{% if include.kind == "patent" %} checked{% endif %}> {% if ko %}특허{% else %}Patent{% endif %}</label>
     </div>
 
     <!-- 논문 -->

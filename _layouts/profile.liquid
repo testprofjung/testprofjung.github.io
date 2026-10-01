@@ -40,7 +40,7 @@ layout: default
 
       <ul class="pf-stats">
         <li><a href="{{ prefix | append: '/publications/' | relative_url }}"><strong>{{ site.papers.size }}</strong><span>{{ t.papers_count }}</span></a></li>
-        <li><a href="{{ prefix | append: '/publications/?go=patents' | relative_url }}"><strong>{{ site.patents.size }}</strong><span>{{ t.patents_count }}</span></a></li>
+        <li><a href="{{ prefix | append: '/patents/' | relative_url }}"><strong>{{ site.patents.size }}</strong><span>{{ t.patents_count }}</span></a></li>
         <li><a href="{{ prefix | append: '/cv/#awards' | relative_url }}"><strong>{{ site.cv_items | where: 'section', 'awards' | size }}</strong><span>{{ t.awards_count }}</span></a></li>
         <li><strong>{{ years }}</strong><span>{{ t.years_count }}</span></li>
       </ul>

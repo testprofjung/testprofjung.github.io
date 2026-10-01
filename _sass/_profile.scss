@@ -261,3 +261,12 @@ body.is-admin .admin-only { display: inline-flex !important; }
 @media (max-width: 576px) {
   .cvx-list li { grid-template-columns: 1fr; gap: 2px; }
 }
+
+/* 연구실적 두 페이지(논문/특허) 이동 버튼 — 현재 페이지 강조 */
+.pub-tabs a.is-current { background: var(--global-theme-color); border-color: var(--global-theme-color); color: #fff !important; }
+.pub-tabs a.is-current span { background: rgba(255, 255, 255, 0.2); color: #fff; }
+html[data-theme="dark"] .pub-tabs a.is-current { color: #050b1f !important; }
+html[data-theme="dark"] .pub-tabs a.is-current span { color: #050b1f; }
+
+/* 상단 드롭다운 메뉴(연구실적) 글자 왼쪽 정렬 */
+.navbar .dropdown-menu .dropdown-item { text-align: left; }

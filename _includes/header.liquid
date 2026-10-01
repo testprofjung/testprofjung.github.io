@@ -55,11 +55,32 @@
             <a class="nav-link" href="{{ home.url | default: '/' | relative_url }}">{{ t.nav_about }}</a>
           </li>
           {%- assign sorted_pages = lang_pages | sort: 'nav_order' -%}
+          {%- assign done_groups = '' -%}
           {%- for p in sorted_pages -%}
-            {%- if p.nav and p.ref != 'about' %}
+            {%- if p.nav and p.ref != 'about' -%}
+              {%- if p.nav_group -%}
+                {%- comment -%} 같은 nav_group 페이지들은 드롭다운 메뉴 하나로 묶음 (예: 연구실적 → 논문 / 특허) {%- endcomment -%}
+                {%- assign group_key = p.nav_group | append: ';' -%}
+                {%- unless done_groups contains group_key -%}
+                  {%- assign done_groups = done_groups | append: group_key -%}
+                  {%- assign kids = sorted_pages | where: 'nav_group', p.nav_group -%}
+                  {%- assign group_active = false -%}
+                  {%- for k in kids -%}{%- if page.url == k.url -%}{%- assign group_active = true -%}{%- endif -%}{%- endfor -%}
+                  {%- assign group_label_key = 'nav_' | append: p.nav_group %}
+              <li class="nav-item dropdown {% if group_active %}active{% endif %}">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-nav-dropdown-toggle="true" aria-haspopup="true" aria-expanded="false">{{ t[group_label_key] | default: p.nav_group }}</a>
+                <div class="dropdown-menu dropdown-menu-right">
+                  {%- for k in kids %}
+                  <a class="dropdown-item {% if page.url == k.url %}active{% endif %}" href="{{ k.url | relative_url }}">{{ k.nav_label | default: k.title }}</a>
+                  {%- endfor %}
+                </div>
+              </li>
+                {%- endunless -%}
+              {%- else %}
               <li class="nav-item {% if page.url == p.url %}active{% endif %}">
                 <a class="nav-link" href="{{ p.url | relative_url }}">{{ p.title }}</a>
               </li>
+              {%- endif -%}
             {%- endif -%}
           {%- endfor %}
           {% if site.search_enabled %}

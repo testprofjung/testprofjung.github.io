@@ -6,7 +6,7 @@ permalink: /gallery/
 title: gallery
 description: Conferences, fieldwork and moments from the lab.
 nav: true
-nav_order: 3
+nav_order: 4
 images:
   lightbox2: true
 ---
