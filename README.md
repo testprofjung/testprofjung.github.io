@@ -11,11 +11,18 @@
 2. 코드를 `main`에 푸시하면 Actions가 `gh-pages` 브랜치를 만듭니다 (3~5분)
 3. **Settings → Pages → Build and deployment** 에서 Source를 **Deploy from a branch**, Branch를 **gh-pages / (root)** 로 지정
 
-## 내용 추가·수정 — 웹 편집기
+## 논문·특허 추가 — 사이트에서 바로
 
-https://app.pagescms.org 에 GitHub 계정으로 로그인 → 이 저장소 선택.
-(저장소에 쓰기 권한이 있는 계정만 저장할 수 있습니다.)
-연구실적 페이지 주소 뒤에 `?admin=1`을 붙여 한 번 열면, 그 브라우저에서 **[논문·특허 추가]** 버튼이 보입니다 (`?admin=0`으로 숨김).
+1. 연구실적 페이지를 주소 뒤에 `?admin=1`을 붙여 한 번 엽니다 (예: `https://testprofjung.github.io/publications/?admin=1`).
+   이후 그 브라우저에서는 **[논문·특허 추가]** 버튼이 계속 보입니다 (`?admin=0`으로 숨김).
+2. 버튼 → 논문/특허 선택 → 내용 입력 → **[GitHub에 저장]**
+3. GitHub 새 파일 화면이 내용이 채워진 채로 열립니다 → **Commit changes** 클릭 → 3~5분 뒤 사이트에 반영
+   (GitHub에 로그인되어 있고 이 저장소에 쓰기 권한이 있어야 합니다.)
+
+## 그 밖의 내용 수정 — 웹 편집기 (Pages CMS)
+
+https://app.pagescms.org 에 GitHub 계정으로 로그인 → 이 저장소 선택 (최초 1회 Pages CMS GitHub 앱 설치 필요).
+논문·특허 수정·삭제도 여기서 할 수 있습니다.
 
 | 메뉴 | 하는 일 | 파일 |
 |---|---|---|

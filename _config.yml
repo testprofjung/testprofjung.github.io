@@ -20,6 +20,9 @@ apple_touch_icon: # image name in /assets/img/ (or a rooted path / absolute URL)
 url: https://testprofjung.github.io
 # 관리자 편집기 (Pages CMS) — 연구실적 페이지를 ?admin=1 로 한 번 열면 [추가] 버튼이 보입니다.
 cms: https://app.pagescms.org/testprofjung/testprofjung.github.io/main
+# 연구실적 [추가] 창이 파일을 만들 GitHub 저장소
+github_repo: testprofjung/testprofjung.github.io
+github_branch: main
 baseurl: # leave blank for root (username.github.io)
 last_updated: false # set to true if you want to display last updated in the footer
 impressum_path: # set to path to include impressum link in the footer, use the same path as permalink in a page, helps to conform with EU GDPR

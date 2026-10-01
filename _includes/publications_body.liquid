@@ -7,7 +7,7 @@
 <nav class="pub-tabs">
   <a href="#articles">{{ t.articles }} <span>{{ site.papers.size }}</span></a>
   <a href="#patents">{{ t.patents }} <span>{{ site.patents.size }}</span></a>
-  {% if site.cms %}<a class="admin-only pub-add" href="{{ site.cms }}" target="_blank" rel="noopener"><i class="fa-solid fa-plus"></i> {% if lang == 'ko' %}논문·특허 추가{% else %}Add paper / patent{% endif %}</a>{% endif %}
+  <a class="admin-only pub-add" href="#" data-open-pub-admin><i class="fa-solid fa-plus"></i> {% if lang == 'ko' %}논문·특허 추가{% else %}Add paper / patent{% endif %}</a>
 </nav>
 
 {% if site.bib_search %}
@@ -37,16 +37,4 @@
   {%- endfor %}
 </div>
 
-<script>
-  // 관리자 모드: 이 페이지를 ?admin=1 로 한 번 열면 [추가] 버튼이 보입니다 (?admin=0 으로 해제)
-  (function () {
-    try {
-      var m = /[?&]admin=([01])/.exec(location.search);
-      if (m) {
-        if (m[1] === "1") localStorage.setItem("pj-admin", "1");
-        else localStorage.removeItem("pj-admin");
-      }
-      if (localStorage.getItem("pj-admin") === "1") document.body.classList.add("is-admin");
-    } catch (e) {}
-  })();
-</script>
+{% include pub_admin.liquid lang=lang %}

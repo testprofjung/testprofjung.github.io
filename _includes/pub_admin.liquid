@@ -1,0 +1,60 @@
+{%- comment -%}
+  관리자용 논문·특허 추가 창. 연구실적 페이지를 ?admin=1 로 한 번 열면 [추가] 버튼이 보입니다.
+  입력 → [GitHub에 저장] → GitHub 새 파일 화면(내용 자동 입력) → Commit changes 로 등록.
+{%- endcomment -%}
+{%- assign ko = false -%}{%- if include.lang == 'ko' -%}{%- assign ko = true -%}{%- endif -%}
+<dialog id="pubAdmin" class="pa-dialog" data-repo="{{ site.github_repo }}" data-branch="{{ site.github_branch | default: 'main' }}" data-lang="{{ include.lang }}">
+  <form method="dialog" class="pa-form" id="pubAdminForm">
+    <header class="pa-head">
+      <h3>{% if ko %}연구실적 추가{% else %}Add a publication{% endif %}</h3>
+      <button type="button" class="pa-x" data-close aria-label="Close">&times;</button>
+    </header>
+
+    <div class="pa-type" role="tablist">
+      <label><input type="radio" name="kind" value="paper" checked> {% if ko %}논문{% else %}Journal article{% endif %}</label>
+      <label><input type="radio" name="kind" value="patent"> {% if ko %}특허{% else %}Patent{% endif %}</label>
+    </div>
+
+    <!-- 논문 -->
+    <fieldset class="pa-fields" data-for="paper">
+      <label class="pa-wide">{% if ko %}논문 제목{% else %}Title{% endif %} *<input name="title" required></label>
+      <label class="pa-wide">{% if ko %}저자 (쉼표로 구분, 예: Gil-Dong Hong, Hyung-Sup Jung){% else %}Authors (comma-separated){% endif %} *
+        <input name="authors" required placeholder="Gil-Dong Hong, Hyung-Sup Jung"></label>
+      <label class="pa-wide">{% if ko %}저널명{% else %}Journal{% endif %} *<input name="journal" required placeholder="Remote Sensing of Environment"></label>
+      <label>{% if ko %}저널 약어 배지{% else %}Journal badge{% endif %}<input name="abbr" placeholder="RSE"></label>
+      <label>{% if ko %}권{% else %}Volume{% endif %}<input name="volume"></label>
+      <label>{% if ko %}호{% else %}Issue{% endif %}<input name="issue"></label>
+      <label>{% if ko %}페이지/논문번호{% else %}Pages / article no.{% endif %}<input name="pages"></label>
+      <label>{% if ko %}출판일{% else %}Publication date{% endif %} *<input name="date" type="date" required></label>
+      <label>DOI<input name="doi" placeholder="10.1016/j.rse.2025.114577"></label>
+      <label class="pa-wide">{% if ko %}논문 링크 (선택){% else %}Link (optional){% endif %}<input name="link" type="url"></label>
+      <label class="pa-check"><input name="selected" type="checkbox"> {% if ko %}소개 페이지 대표 논문으로 표시{% else %}Show as a selected publication on the About page{% endif %}</label>
+    </fieldset>
+
+    <!-- 특허 -->
+    <fieldset class="pa-fields" data-for="patent" hidden>
+      <label class="pa-wide">{% if ko %}특허명{% else %}Title{% endif %} *<input name="ptitle" required></label>
+      <label class="pa-wide">{% if ko %}발명자 (예: Jung, H.-S., Lee, W.-J.){% else %}Inventors{% endif %} *<input name="inventors" required></label>
+      <label>{% if ko %}국가{% else %}Country{% endif %}
+        <select name="country"><option>Korea</option><option>USA</option><option>Japan</option><option>Europe</option><option>World</option></select></label>
+      <label>{% if ko %}구분{% else %}Type{% endif %}
+        <select name="pkind"><option value="Registration">{% if ko %}등록{% else %}Registration{% endif %}</option><option value="Application">{% if ko %}출원{% else %}Application{% endif %}</option></select></label>
+      <label>{% if ko %}번호{% else %}Number{% endif %} *<input name="number" required placeholder="10-2853992"></label>
+      <label>{% if ko %}등록/출원일{% else %}Date{% endif %} *<input name="pdate" type="date" required></label>
+    </fieldset>
+
+    <details class="pa-preview">
+      <summary>{% if ko %}생성될 파일 미리보기{% else %}Preview file{% endif %}</summary>
+      <p class="pa-path"></p>
+      <pre></pre>
+    </details>
+
+    <p class="pa-note">{% if ko %}[GitHub에 저장]을 누르면 GitHub 새 파일 화면이 열립니다. 아래의 <b>Commit changes</b>를 누르면 등록되고 3~5분 뒤 사이트에 반영됩니다. (저장소 쓰기 권한이 있는 계정만 가능){% else %}[Save to GitHub] opens GitHub's new-file page with the content filled in. Click <b>Commit changes</b>; the site updates in 3–5 minutes. (Requires write access to the repository){% endif %}</p>
+
+    <footer class="pa-actions">
+      <button type="button" class="pa-btn ghost" data-download>{% if ko %}파일 다운로드{% else %}Download file{% endif %}</button>
+      <button type="submit" class="pa-btn primary">{% if ko %}GitHub에 저장{% else %}Save to GitHub{% endif %} <i class="fa-brands fa-github"></i></button>
+    </footer>
+  </form>
+</dialog>
+<script src="{{ '/assets/js/pub-admin.js' | relative_url }}" defer></script>
