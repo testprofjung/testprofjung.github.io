@@ -196,6 +196,10 @@ collections:
     output: false
   patents: # 특허 — _patents/ 폴더의 파일 1개 = 특허 1건
     output: false
+  cv_items: # 이력 — _cv_items/ 폴더의 파일 1개 = 이력 항목 1개
+    output: false
+  gallery_items: # 갤러리 — _gallery_items/ 폴더의 파일 1개 = 사진 1장 (사진 파일은 assets/img/gallery/)
+    output: false
   books:
     output: true
   news:

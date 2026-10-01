@@ -1,0 +1,53 @@
+{%- comment -%}
+  관리자용 CV 항목 추가 창. CV 페이지를 ?admin=1 로 한 번 열면 [추가] 버튼이 보입니다.
+  입력 → [GitHub에 저장] → GitHub 새 파일 화면(내용 자동 입력) → Commit changes 로 등록.
+{%- endcomment -%}
+{%- assign ko = false -%}{%- if include.lang == 'ko' -%}{%- assign ko = true -%}{%- endif -%}
+{%- assign t = site.data.i18n[include.lang] -%}
+<dialog id="cvAdmin" class="pa-dialog" data-repo="{{ site.github_repo }}" data-branch="{{ site.github_branch | default: 'main' }}" data-lang="{{ include.lang }}">
+  <form method="dialog" class="pa-form" id="cvAdminForm">
+    <header class="pa-head">
+      <h3>{% if ko %}이력 항목 추가{% else %}Add a CV item{% endif %}</h3>
+      <button type="button" class="pa-x" data-close aria-label="Close">&times;</button>
+    </header>
+
+    <fieldset class="pa-fields">
+      <label class="pa-wide">{% if ko %}구분{% else %}Section{% endif %}
+        <select name="section">
+          <option value="awards">{{ t.awards }}</option>
+          <option value="experience">{{ t.experience }}</option>
+          <option value="education">{{ t.education }}</option>
+          <option value="memberships">{{ t.memberships }}</option>
+          <option value="editorial">{{ t.editorial }}</option>
+          <option value="teaching">{{ t.teaching }}</option>
+        </select>
+      </label>
+      <label data-hide-for="teaching">{% if ko %}기간 / 연도 (화면 표시){% else %}Period / year (as shown){% endif %} *
+        <input name="period" required placeholder="2026  ·  Mar. 2026 – present"></label>
+      <label>{% if ko %}정렬 기준 (연-월, 최근일수록 위){% else %}Sort key (YYYY-MM, newest first){% endif %} *
+        <input name="sort" type="month" required></label>
+      <label class="pa-wide"><span data-label-title>{% if ko %}제목 / 직위 / 학위 / 수상명 (영문){% else %}Title / role / degree / award (English){% endif %}</span> *
+        <input name="title_en" required></label>
+      <label class="pa-wide">{% if ko %}제목 / 직위 / 학위 / 수상명 (국문){% else %}Title / role / degree / award (Korean){% endif %}
+        <input name="title_ko"></label>
+      <label class="pa-wide" data-hide-for="teaching">{% if ko %}기관 / 학교 / 학회 (영문){% else %}Organization (English){% endif %}
+        <input name="org_en"></label>
+      <label class="pa-wide" data-hide-for="teaching">{% if ko %}기관 / 학교 / 학회 (국문){% else %}Organization (Korean){% endif %}
+        <input name="org_ko"></label>
+    </fieldset>
+
+    <details class="pa-preview">
+      <summary>{% if ko %}생성될 파일 미리보기{% else %}Preview file{% endif %}</summary>
+      <p class="pa-path">-</p>
+      <pre>-</pre>
+    </details>
+
+    <p class="pa-note">{% if ko %}국문을 비워 두면 국문 페이지에도 영문이 표시됩니다. [GitHub에 저장] → GitHub 화면에서 <b>Commit changes</b> → 3~5분 뒤 반영 (브라우저 캐시 때문에 새로고침이 필요할 수 있습니다).{% else %}If Korean is left empty, the English text is shown on the Korean page. [Save to GitHub] → <b>Commit changes</b> on GitHub → live in 3–5 minutes (you may need to refresh).{% endif %}</p>
+
+    <footer class="pa-actions">
+      <button type="button" class="pa-btn ghost" data-download>{% if ko %}파일 다운로드{% else %}Download file{% endif %}</button>
+      <button type="submit" class="pa-btn primary">{% if ko %}GitHub에 저장{% else %}Save to GitHub{% endif %} <i class="fa-brands fa-github"></i></button>
+    </footer>
+  </form>
+</dialog>
+<script src="{{ '/assets/js/cv-admin.js' | relative_url }}" defer></script>

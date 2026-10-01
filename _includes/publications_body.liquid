@@ -5,8 +5,8 @@
 {%- assign patents = site.patents | sort: 'date' | reverse | group_by: 'year' -%}
 
 <nav class="pub-tabs">
-  <a href="#articles">{{ t.articles }} <span>{{ site.papers.size }}</span></a>
-  <a href="#patents">{{ t.patents }} <span>{{ site.patents.size }}</span></a>
+  <a href="?go=articles" data-go="articles">{{ t.articles }} <span>{{ site.papers.size }}</span></a>
+  <a href="?go=patents" data-go="patents">{{ t.patents }} <span>{{ site.patents.size }}</span></a>
   <a class="admin-only pub-add" href="#" data-open-pub-admin><i class="fa-solid fa-plus"></i> {% if lang == 'ko' %}논문·특허 추가{% else %}Add paper / patent{% endif %}</a>
 </nav>
 
@@ -38,3 +38,18 @@
 </div>
 
 {% include pub_admin.liquid lang=lang %}
+
+<script>
+  // 탭 이동: # 주소를 쓰면 al-folio 검색창에 그 글자가 들어가므로, ?go= 와 스크롤로 이동
+  (function () {
+    function go(id) {
+      var el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    document.querySelectorAll("[data-go]").forEach(function (a) {
+      a.addEventListener("click", function (e) { e.preventDefault(); go(a.getAttribute("data-go")); });
+    });
+    var m = /[?&]go=([a-z]+)/.exec(location.search);
+    if (m) window.addEventListener("load", function () { go(m[1]); });
+  })();
+</script>

@@ -72,33 +72,34 @@ content:
       - { name: date, label: 등록/출원일, type: date, required: true }
       - { name: year, label: 연도, type: number, required: true }
 
-  # ---------------- 사진 갤러리 ----------------
-  - name: gallery
+  # ---------------- 사진 갤러리 (사진 1장 = 파일 1개) ----------------
+  - name: gallery_items
     label: 사진 갤러리 (Gallery)
-    type: file
-    path: _data/gallery.yml
-    format: yaml
+    type: collection
+    path: _gallery_items
+    filename: "{year}-{month}-{day}-{primary}.md"
+    view:
+      fields: [caption, date]
+      primary: caption
+      default:
+        sort: date
+        order: desc
     fields:
-      - name: items
-        label: 사진 — 위에 있을수록 먼저 표시
-        type: object
-        list: true
-        fields:
-          - name: image
-            label: 사진
-            type: image
-            required: true
-            options:
-              input: assets/img/gallery
-              output: /assets/img/gallery
-          - { name: caption, label: 설명 (영문), type: string }
-          - { name: caption_ko, label: 설명 (국문), type: string }
-          - { name: date, label: 날짜, type: date }
-          - name: category
-            label: 분류
-            type: select
-            options:
-              values: [Conference, Fieldwork, Lab, Award, Event]
+      - name: image
+        label: 사진
+        type: image
+        required: true
+        options:
+          input: assets/img/gallery
+          output: /assets/img/gallery
+      - { name: caption, label: 설명 (영문), type: string }
+      - { name: caption_ko, label: 설명 (국문), type: string }
+      - { name: date, label: 날짜, type: date, required: true }
+      - name: category
+        label: 분류
+        type: select
+        options:
+          values: [Conference, Fieldwork, Lab, Award, Event]
 
   # ---------------- 기본 정보 · 소개 · 연구분야 ----------------
   - name: profile
@@ -138,67 +139,28 @@ content:
           - { name: icon, label: "아이콘 (Font Awesome 클래스, 예: fa-solid fa-satellite)", type: string }
       - { name: faculty_since, label: 임용 연도, type: number }
 
-  # ---------------- 이력 (CV) ----------------
-  - name: cv
+  # ---------------- 이력 (CV) — 항목 1개 = 파일 1개 ----------------
+  - name: cv_items
     label: 이력 (CV)
-    type: file
-    path: _data/cv.yml
-    format: yaml
+    type: collection
+    path: _cv_items
+    filename: "{year}-{month}-{primary}.md"
+    view:
+      fields: [title_en, section, period]
+      primary: title_en
+      default:
+        sort: order_key
+        order: desc
     fields:
-      - name: education
-        label: 학력
-        type: object
-        list: true
-        fields:
-          - { name: period, label: 기간, type: string }
-          - { name: degree_en, label: 학위 (영문), type: string }
-          - { name: degree_ko, label: 학위 (국문), type: string }
-          - { name: school_en, label: 학교 (영문), type: string }
-          - { name: school_ko, label: 학교 (국문), type: string }
-      - name: experience
-        label: 경력 — 새 항목은 맨 위에
-        type: object
-        list: true
-        fields:
-          - { name: period, label: "기간 (예: Mar. 2018 – present)", type: string }
-          - { name: role_en, label: 직위 (영문), type: string }
-          - { name: role_ko, label: 직위 (국문), type: string }
-          - { name: org_en, label: 기관 (영문), type: string }
-          - { name: org_ko, label: 기관 (국문), type: string }
-      - name: awards
-        label: 수상 — 새 항목은 맨 위에
-        type: object
-        list: true
-        fields:
-          - { name: year, label: 연도, type: string }
-          - { name: title_en, label: 수상명 (영문), type: string }
-          - { name: title_ko, label: 수상명 (국문), type: string }
-          - { name: org_en, label: 수여 기관 (영문), type: string }
-          - { name: org_ko, label: 수여 기관 (국문), type: string }
-      - name: memberships
-        label: 학회 활동
-        type: object
-        list: true
-        fields:
-          - { name: period, label: 기간, type: string }
-          - { name: role_en, label: 직책 (영문), type: string }
-          - { name: role_ko, label: 직책 (국문), type: string }
-          - { name: org_en, label: 학회 (영문), type: string }
-          - { name: org_ko, label: 학회 (국문), type: string }
-      - name: editorial
-        label: 편집 활동
-        type: object
-        list: true
-        fields:
-          - { name: period, label: 기간, type: string }
-          - { name: role_en, label: 직책 (영문), type: string }
-          - { name: role_ko, label: 직책 (국문), type: string }
-          - { name: org_en, label: 학술지 (영문), type: string }
-          - { name: org_ko, label: 학술지 (국문), type: string }
-      - name: teaching
-        label: 강의
-        type: object
-        list: true
-        fields:
-          - { name: en, label: 과목명 (영문), type: string }
-          - { name: ko, label: 과목명 (국문), type: string }
+      - name: section
+        label: 구분
+        type: select
+        required: true
+        options:
+          values: [education, experience, awards, memberships, editorial, teaching]
+      - { name: period, label: "기간/연도 (화면 표시, 예: Mar. 2026 – present)", type: string }
+      - { name: order_key, label: "정렬 기준 (예: 2026-03-50, 클수록 위)", type: string, required: true }
+      - { name: title_en, label: "제목·직위·학위·수상명 (영문)", type: string, required: true }
+      - { name: title_ko, label: "제목·직위·학위·수상명 (국문)", type: string }
+      - { name: org_en, label: "기관·학교·학회 (영문)", type: string }
+      - { name: org_ko, label: "기관·학교·학회 (국문)", type: string }

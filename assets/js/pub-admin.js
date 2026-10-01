@@ -3,15 +3,7 @@
 (function () {
   "use strict";
 
-  // 관리자 모드: ?admin=1 로 한 번 열면 이 브라우저에 [추가] 버튼 표시 (?admin=0 해제)
-  try {
-    var m = /[?&]admin=([01])/.exec(location.search);
-    if (m) {
-      if (m[1] === "1") localStorage.setItem("pj-admin", "1");
-      else localStorage.removeItem("pj-admin");
-    }
-    if (localStorage.getItem("pj-admin") === "1") document.body.classList.add("is-admin");
-  } catch (e) {}
+  // 관리자 모드 처리는 admin-mode.js (사이트 공통)
 
   var dlg = document.getElementById("pubAdmin");
   if (!dlg) return;

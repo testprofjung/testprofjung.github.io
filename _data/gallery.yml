@@ -1,7 +1,0 @@
-# 갤러리 사진 — 웹 편집기(Pages CMS)에서 사진을 올리고 설명을 적으면 Gallery 페이지에 표시됩니다.
-# 예)
-#  - image: /assets/img/gallery/igarss2025.jpg
-#    caption: IGARSS 2025 발표
-#    date: 2025-07-15
-#    category: Conference
-items: []

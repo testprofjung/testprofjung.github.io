@@ -54,3 +54,46 @@ html[data-theme="dark"] .pa-btn.primary { color: #050b1f; }
 @media (max-width: 576px) {
   .pa-fields { grid-template-columns: 1fr; }
 }
+
+/* CV 페이지 [추가] 버튼 위치 */
+.cv-tools { display: flex; justify-content: flex-end; margin: -6px 0 12px; }
+
+/* 관리자 모드 표시줄 */
+.admin-bar {
+  position: fixed; left: 16px; bottom: 56px; z-index: 1100;
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 10px 8px 14px; border-radius: 999px;
+  background: #050b1f; color: #fff; font-size: 0.82rem; font-weight: 700;
+  box-shadow: 0 12px 30px -12px rgba(5, 11, 31, 0.6);
+}
+.admin-bar i { color: #19c6e6; }
+.admin-bar button {
+  border: 0; border-radius: 999px; padding: 4px 12px; cursor: pointer;
+  background: #19c6e6; color: #050b1f; font-weight: 800; font-size: 0.78rem;
+}
+
+/* 갤러리 추가 창 */
+.pa-thumb img { max-height: 160px; border-radius: 10px; }
+.pa-steps { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 10px; }
+.pa-steps li {
+  display: grid; grid-template-columns: 1fr auto; gap: 4px 14px; align-items: center;
+  padding: 12px 14px; border-radius: 12px; border: 1px solid var(--global-divider-color);
+}
+.pa-steps strong { font-size: 0.9rem; }
+.pa-steps span { grid-column: 1; font-size: 0.8rem; color: var(--global-text-color-light); }
+.pa-steps .pa-btn { grid-column: 2; grid-row: 1 / span 2; white-space: nowrap; }
+@media (max-width: 576px) { .pa-steps li { grid-template-columns: 1fr; } .pa-steps .pa-btn { grid-column: 1; grid-row: auto; justify-self: start; } }
+
+/* 소개 수정 창 */
+.pa-wide-dialog { width: min(860px, calc(100vw - 32px)); }
+.pa-sub { margin: 22px 0 10px; font-size: 0.95rem; font-weight: 800; color: var(--global-theme-color); }
+.pa-sub:first-of-type { margin-top: 4px; }
+.pa-fields textarea {
+  width: 100%; padding: 9px 12px; border-radius: 10px; resize: vertical;
+  border: 1px solid var(--global-divider-color); background: var(--global-card-bg-color);
+  color: var(--global-text-color); font: inherit; font-size: 0.92rem; font-weight: 400; line-height: 1.6;
+}
+.pa-research { display: grid; gap: 12px; margin-bottom: 10px; }
+.pa-research-item { padding: 14px; border-radius: 12px; border: 1px dashed var(--global-divider-color); }
+.pa-research-item:has([data-remove]:checked) { opacity: 0.45; }
+.pf-admin { justify-content: flex-start; margin: 14px 0 0; }

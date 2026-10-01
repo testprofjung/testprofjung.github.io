@@ -36,10 +36,12 @@ layout: default
         <a class="pf-btn" href="{{ prefix | append: '/cv/' | relative_url }}"><i class="fa-solid fa-file-lines"></i> {{ t.view_cv }}</a>
       </div>
 
+      <div class="cv-tools pf-admin"><a class="admin-only pub-add" href="#" data-open-profile-admin><i class="fa-solid fa-pen"></i> {% if lang == 'ko' %}소개 수정{% else %}Edit About{% endif %}</a></div>
+
       <ul class="pf-stats">
         <li><a href="{{ prefix | append: '/publications/' | relative_url }}"><strong>{{ site.papers.size }}</strong><span>{{ t.papers_count }}</span></a></li>
-        <li><a href="{{ prefix | append: '/publications/#patents' | relative_url }}"><strong>{{ site.patents.size }}</strong><span>{{ t.patents_count }}</span></a></li>
-        <li><a href="{{ prefix | append: '/cv/#awards' | relative_url }}"><strong>{{ site.data.cv.awards.size }}</strong><span>{{ t.awards_count }}</span></a></li>
+        <li><a href="{{ prefix | append: '/publications/?go=patents' | relative_url }}"><strong>{{ site.patents.size }}</strong><span>{{ t.patents_count }}</span></a></li>
+        <li><a href="{{ prefix | append: '/cv/#awards' | relative_url }}"><strong>{{ site.cv_items | where: 'section', 'awards' | size }}</strong><span>{{ t.awards_count }}</span></a></li>
         <li><strong>{{ years }}</strong><span>{{ t.years_count }}</span></li>
       </ul>
     </div>
@@ -99,3 +101,5 @@ layout: default
   </section>
   {% endif %}
 </div>
+
+{% include profile_admin.liquid lang=lang %}
