@@ -1,0 +1,65 @@
+{%- comment -%} 이력(CV) 페이지 본문 (영문/국문 공용). 내용: _data/cv.yml {%- endcomment -%}
+{%- assign lang = include.lang | default: 'en' -%}
+{%- assign t = site.data.i18n[lang] -%}
+{%- assign k_degree = 'degree_' | append: lang -%}
+{%- assign k_school = 'school_' | append: lang -%}
+{%- assign k_role = 'role_' | append: lang -%}
+{%- assign k_org = 'org_' | append: lang -%}
+{%- assign k_title = 'title_' | append: lang -%}
+{%- assign cv = site.data.cv -%}
+
+<div class="cvx">
+  <section class="cvx-block" id="education">
+    <h2>{{ t.education }}</h2>
+    <ul class="cvx-list">
+      {%- for e in cv.education %}
+      <li><span class="cvx-when">{{ e.period }}</span><div><strong>{{ e[k_degree] }}</strong><span>{{ e[k_school] }}</span></div></li>
+      {%- endfor %}
+    </ul>
+  </section>
+
+  <section class="cvx-block" id="experience">
+    <h2>{{ t.experience }}</h2>
+    <ul class="cvx-list">
+      {%- for e in cv.experience %}
+      <li><span class="cvx-when">{{ e.period | replace: 'present', t.present }}</span><div><strong>{{ e[k_role] }}</strong><span>{{ e[k_org] }}</span></div></li>
+      {%- endfor %}
+    </ul>
+  </section>
+
+  <section class="cvx-block" id="awards">
+    <h2>{{ t.awards }}</h2>
+    <ul class="cvx-list">
+      {%- for a in cv.awards %}
+      <li><span class="cvx-when">{{ a.year }}</span><div><strong>{{ a[k_title] }}</strong><span>{{ a[k_org] }}</span></div></li>
+      {%- endfor %}
+    </ul>
+  </section>
+
+  <section class="cvx-block" id="memberships">
+    <h2>{{ t.memberships }}</h2>
+    <ul class="cvx-list">
+      {%- for a in cv.memberships %}
+      <li><span class="cvx-when">{{ a.period | replace: 'present', t.present }}</span><div><strong>{{ a[k_role] }}</strong><span>{{ a[k_org] }}</span></div></li>
+      {%- endfor %}
+    </ul>
+  </section>
+
+  <section class="cvx-block" id="editorial">
+    <h2>{{ t.editorial }}</h2>
+    <ul class="cvx-list">
+      {%- for a in cv.editorial %}
+      <li><span class="cvx-when">{{ a.period | replace: 'present', t.present }}</span><div><strong>{{ a[k_role] }}</strong><span>{{ a[k_org] }}</span></div></li>
+      {%- endfor %}
+    </ul>
+  </section>
+
+  <section class="cvx-block" id="teaching">
+    <h2>{{ t.teaching }}</h2>
+    <ul class="cvx-courses">
+      {%- for c in cv.teaching %}
+      <li>{{ c[lang] }}</li>
+      {%- endfor %}
+    </ul>
+  </section>
+</div>

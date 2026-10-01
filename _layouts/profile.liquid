@@ -1,0 +1,101 @@
+---
+layout: default
+---
+{%- comment -%} About 페이지 (영문/국문 공용). 내용은 _data/profile.yml, 대표 논문은 _papers 의 selected: true {%- endcomment -%}
+{%- assign lang = page.lang | default: 'en' -%}
+{%- assign t = site.data.i18n[lang] -%}
+{%- assign k_title = 'title_' | append: lang -%}
+{%- assign k_department = 'department_' | append: lang -%}
+{%- assign k_university = 'university_' | append: lang -%}
+{%- assign k_name = 'name_' | append: lang -%}
+{%- assign k_bio = 'bio_' | append: lang -%}
+{%- assign k_address = 'address_' | append: lang -%}
+{%- assign k_desc = 'desc_' | append: lang -%}
+{%- assign me = site.data.profile -%}
+{%- assign papers = site.papers | sort: 'date' | reverse -%}
+{%- assign selected = papers | where: 'selected', true -%}
+{%- assign years = site.time | date: '%Y' | minus: me.faculty_since -%}
+{%- if lang == 'ko' -%}{%- assign prefix = '/ko' -%}{%- else -%}{%- assign prefix = '' -%}{%- endif -%}
+
+<div class="pf">
+  <!-- ===== Hero ===== -->
+  <section class="pf-hero">
+    <div class="pf-intro">
+      <p class="pf-kicker">{{ me[k_title] }} · {{ me[k_department] }}</p>
+      {%- if lang == 'ko' %}
+      <h1 class="pf-name">{{ me.name_ko }}<small>{{ me.name_en }}</small></h1>
+      {%- else %}
+      <h1 class="pf-name">{{ me.name_en | split: ' ' | first }} <span>{{ me.name_en | split: ' ' | last }}</span><small>{{ me.name_ko }}</small></h1>
+      {%- endif %}
+      <p class="pf-affil">{{ me[k_university] }}</p>
+
+      <div class="pf-links">
+        <a class="pf-btn primary" href="mailto:{{ me.email }}"><i class="fa-solid fa-envelope"></i> {{ me.email }}</a>
+        {% if me.scholar %}<a class="pf-btn" href="{{ me.scholar }}" target="_blank" rel="noopener"><i class="ai ai-google-scholar"></i> Google Scholar</a>{% endif %}
+        {% if me.researchgate %}<a class="pf-btn" href="{{ me.researchgate }}" target="_blank" rel="noopener"><i class="ai ai-researchgate"></i> ResearchGate</a>{% endif %}
+        <a class="pf-btn" href="{{ prefix | append: '/cv/' | relative_url }}"><i class="fa-solid fa-file-lines"></i> {{ t.view_cv }}</a>
+      </div>
+
+      <ul class="pf-stats">
+        <li><a href="{{ prefix | append: '/publications/' | relative_url }}"><strong>{{ site.papers.size }}</strong><span>{{ t.papers_count }}</span></a></li>
+        <li><a href="{{ prefix | append: '/publications/#patents' | relative_url }}"><strong>{{ site.patents.size }}</strong><span>{{ t.patents_count }}</span></a></li>
+        <li><a href="{{ prefix | append: '/cv/#awards' | relative_url }}"><strong>{{ site.data.cv.awards.size }}</strong><span>{{ t.awards_count }}</span></a></li>
+        <li><strong>{{ years }}</strong><span>{{ t.years_count }}</span></li>
+      </ul>
+    </div>
+
+    <figure class="pf-photo">
+      <img src="{{ me.photo | relative_url }}" alt="{{ me[k_name] }}">
+    </figure>
+  </section>
+
+  <!-- ===== Biography + contact ===== -->
+  <section class="pf-section pf-bio-grid">
+    <div>
+      <h2 class="pf-h2">{{ t.biography }}</h2>
+      <div class="pf-bio">{{ me[k_bio] | markdownify }}</div>
+    </div>
+    <aside class="pf-contact">
+      <dl>
+        <dt><i class="fa-solid fa-building-columns"></i> {{ t.office }}</dt>
+        <dd>{% if lang == 'ko' %}{{ me[k_university] }} {{ me[k_department] }}{% else %}{{ me[k_department] }}, {{ me[k_university] }}{% endif %}<br>{{ me[k_address] }}</dd>
+        <dt><i class="fa-solid fa-phone"></i> {{ t.tel }}</dt>
+        <dd><a href="tel:+{{ me.phone | remove: '-' }}">{{ me.phone }}</a></dd>
+        {% if me.fax %}<dt><i class="fa-solid fa-fax"></i> {{ t.fax }}</dt><dd>{{ me.fax }}</dd>{% endif %}
+        <dt><i class="fa-solid fa-envelope"></i> {{ t.email }}</dt>
+        <dd><a href="mailto:{{ me.email }}">{{ me.email }}</a></dd>
+      </dl>
+    </aside>
+  </section>
+
+  <!-- ===== Research interests ===== -->
+  <section class="pf-section">
+    <h2 class="pf-h2">{{ t.research }}</h2>
+    <div class="pf-research">
+      {%- for r in me.research %}
+      <article class="pf-card">
+        <div class="pf-card-icon"><i class="{{ r.icon | default: 'fa-solid fa-satellite' }}"></i></div>
+        <h3>{{ r[k_title] }}</h3>
+        <p>{{ r[k_desc] }}</p>
+      </article>
+      {%- endfor %}
+    </div>
+  </section>
+
+  <!-- ===== Selected publications ===== -->
+  {% if selected.size > 0 %}
+  <section class="pf-section">
+    <div class="pf-h2-row">
+      <h2 class="pf-h2">{{ t.selected }}</h2>
+      <a class="pf-more" href="{{ prefix | append: '/publications/' | relative_url }}">{{ t.all_publications }} <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+    <div class="publications">
+      <ol class="bibliography">
+        {%- for p in selected %}
+        {% include paper.liquid p=p %}
+        {%- endfor %}
+      </ol>
+    </div>
+  </section>
+  {% endif %}
+</div>

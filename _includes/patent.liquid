@@ -1,0 +1,23 @@
+{%- comment -%} 특허 1건 (논문과 같은 마크업) {%- endcomment -%}
+{%- assign p = include.p -%}
+{%- assign lang = include.lang | default: 'en' -%}
+{%- assign t = site.data.i18n[lang] -%}
+{%- if p.kind == 'Application' -%}{%- assign kind = t.application -%}{%- else -%}{%- assign kind = t.registration -%}{%- endif -%}
+<li>
+  <div class="row">
+    <div class="col col-sm-2 abbr">
+      <abbr class="badge rounded w-100 patent-badge">{{ p.country }}</abbr>
+    </div>
+    <div class="col-sm-8">
+      <div class="title">{{ p.title }}</div>
+      <div class="author">{{ p.inventors }}</div>
+      <div class="periodical">
+        {%- if lang == 'ko' -%}
+          <em>{{ p.country }} 특허 {{ kind }}</em> 제 {{ p.number }}호, {{ p.date | date: "%Y.%m.%d" }}
+        {%- else -%}
+          <em>{{ p.country }} Patent {{ kind }}</em> No. {{ p.number }}, {{ p.date | date: "%b %-d, %Y" }}
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</li>

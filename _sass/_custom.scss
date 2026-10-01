@@ -1,0 +1,275 @@
+/*******************************************************************************
+ * 사용자 정의 스타일 — 위성지능정보학회 사이트와 같은 색상(네이비·블루·시안)과 Pretendard 글꼴
+ * 색을 바꾸려면 아래 변수만 수정하면 됩니다.
+ ******************************************************************************/
+
+$navy-950: #050b1f;
+$navy-900: #0a1430;
+$navy-800: #111f47;
+$brand: #1f3f9a;
+$brand-ink: #15306f;
+$accent: #19c6e6;
+$accent-ink: #0a7f99;
+$font: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+
+/* ---------- Color tokens ---------- */
+:root {
+  --global-text-color: #1d2433;
+  --global-text-color-light: #5d6880;
+  --global-theme-color: #{$brand};
+  --global-hover-color: #{$accent-ink};
+  --global-highlight-color: #{$navy-800};
+  --global-footer-bg-color: #{$navy-950};
+  --global-footer-text-color: rgba(255, 255, 255, 0.6);
+  --global-footer-link-color: #ffffff;
+  --global-divider-color: #e3e8f1;
+  --global-code-bg-color: #eef3fb;
+}
+
+html[data-theme="dark"] {
+  --global-bg-color: #{$navy-950};
+  --global-card-bg-color: #{$navy-900};
+  --global-text-color: #e6ebf5;
+  --global-text-color-light: #9aa6bf;
+  --global-theme-color: #{$accent};
+  --global-hover-color: #5fe3f7;
+  --global-highlight-color: #{$accent};
+  --global-footer-bg-color: #02060f;
+  --global-footer-text-color: rgba(255, 255, 255, 0.55);
+  --global-footer-link-color: #ffffff;
+  --global-divider-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ---------- Typography ---------- */
+html,
+body,
+h1, h2, h3, h4, h5, h6,
+.navbar,
+.btn,
+input,
+button {
+  font-family: $font !important;
+}
+body {
+  word-break: keep-all;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4 {
+  letter-spacing: -0.02em;
+}
+
+/* ---------- Navbar ---------- */
+.navbar {
+  border-bottom: 1px solid var(--global-divider-color);
+  backdrop-filter: saturate(180%) blur(12px);
+}
+.navbar.navbar-light .navbar-brand {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.navbar.navbar-light .navbar-nav .nav-item .nav-link {
+  font-weight: 600;
+}
+.navbar.navbar-light .navbar-nav .nav-item.active > .nav-link {
+  color: var(--global-theme-color) !important;
+}
+
+/* ---------- About page header ---------- */
+.post-header .post-title {
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+.post-header .post-title .font-weight-bold,
+.post-header .post-title b {
+  color: var(--global-theme-color);
+}
+.post-header .desc,
+.post-header .post-description {
+  color: var(--global-text-color-light);
+}
+.profile img {
+  border-radius: 16px;
+  box-shadow: 0 24px 48px -24px rgba(5, 11, 31, 0.45);
+}
+.profile .more-info {
+  margin-top: 12px;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--global-text-color-light);
+}
+.profile .more-info p {
+  margin: 0;
+}
+
+article h4,
+.post h4 {
+  margin-top: 2rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--global-theme-color);
+  display: inline-block;
+  font-weight: 700;
+}
+
+/* ---------- Publications ---------- */
+.publications h2.bibliography,
+.patents-title {
+  color: var(--global-theme-color);
+  font-weight: 800;
+  border-top-color: var(--global-divider-color) !important;
+}
+.publications ol.bibliography li .abbr abbr.badge,
+.patent-list .patent-ctry {
+  background-color: $navy-800 !important;
+  color: #ffffff !important;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-radius: 6px !important;
+}
+html[data-theme="dark"] .publications ol.bibliography li .abbr abbr.badge,
+html[data-theme="dark"] .patent-list .patent-ctry {
+  background-color: $accent !important;
+  color: $navy-950 !important;
+}
+.publications ol.bibliography li .title {
+  font-weight: 700;
+  color: var(--global-text-color);
+}
+.publications ol.bibliography li .author em,
+.publications ol.bibliography li .author b {
+  color: var(--global-highlight-color);
+  font-weight: 700;
+  font-style: normal;
+}
+.publications ol.bibliography li .links a.btn {
+  border-radius: 999px;
+  border-color: var(--global-theme-color);
+  color: var(--global-theme-color);
+}
+.publications ol.bibliography li .links a.btn:hover {
+  background: var(--global-theme-color);
+  color: #fff;
+}
+
+/* Patents */
+.patents-title {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--global-divider-color);
+  font-size: 2rem;
+  text-transform: lowercase;
+}
+.patent-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 2rem;
+}
+.patent-list li {
+  display: grid;
+  grid-template-columns: 56px 70px 1fr;
+  gap: 12px;
+  align-items: start;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--global-divider-color);
+  font-size: 0.95rem;
+}
+.patent-list .patent-year {
+  font-weight: 700;
+  color: var(--global-theme-color);
+}
+.patent-list .patent-ctry {
+  display: inline-block;
+  text-align: center;
+  font-size: 0.75rem;
+  padding: 3px 6px;
+}
+@media (max-width: 576px) {
+  .patent-list li {
+    grid-template-columns: 48px 1fr;
+  }
+  .patent-list .patent-text {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ---------- CV ---------- */
+.cv .card {
+  border-radius: 14px;
+  border-color: var(--global-divider-color);
+}
+.cv .card-title {
+  color: var(--global-theme-color);
+  font-weight: 800 !important;
+}
+.cv .badge.danger-color-dark {
+  background-color: $navy-800 !important;
+  color: #fff !important;
+  border-radius: 6px;
+}
+html[data-theme="dark"] .cv .badge.danger-color-dark {
+  background-color: $accent !important;
+  color: $navy-950 !important;
+}
+
+/* ---------- Gallery ---------- */
+.gallery-grid {
+  columns: 3 260px;
+  column-gap: 16px;
+}
+.gallery-item {
+  break-inside: avoid;
+  margin: 0 0 16px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--global-card-bg-color);
+  border: 1px solid var(--global-divider-color);
+}
+.gallery-item img {
+  width: 100%;
+  display: block;
+  transition: transform 0.5s ease;
+}
+.gallery-item:hover img {
+  transform: scale(1.03);
+}
+.gallery-item figcaption {
+  padding: 10px 14px 12px;
+  font-size: 0.9rem;
+}
+.gallery-item figcaption small {
+  display: block;
+  color: var(--global-text-color-light);
+}
+.gallery-empty {
+  text-align: center;
+  padding: 72px 20px;
+  border: 1px dashed var(--global-divider-color);
+  border-radius: 16px;
+  color: var(--global-text-color-light);
+}
+.gallery-empty i {
+  font-size: 2.4rem;
+  color: var(--global-theme-color);
+  margin-bottom: 12px;
+}
+
+/* ---------- Footer ---------- */
+footer.fixed-bottom,
+footer.sticky-bottom {
+  background-color: var(--global-footer-bg-color);
+  color: var(--global-footer-text-color);
+}
+
+/* About: contact block & section headings */
+.profile .more-info {
+  font-family: $font !important;
+}
+h2:has(+ .publications),
+h2:has(+ .news),
+h2:has(> a[href*="publications"]) {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 2.5rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--global-theme-color);
+  display: inline-block;
+}

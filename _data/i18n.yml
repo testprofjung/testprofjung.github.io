@@ -1,0 +1,73 @@
+# 화면 문구 (영문 / 국문)
+en:
+  lang_label: EN
+  other_lang_label: 한국어
+  nav_about: about
+  nav_publications: publications
+  nav_cv: cv
+  nav_gallery: gallery
+  biography: Biography
+  research: Research Interests
+  selected: Selected Publications
+  all_publications: All publications
+  articles: Journal Articles
+  patents: Patents
+  papers_count: journal articles
+  patents_count: patents
+  awards_count: honors & awards
+  years_count: years at UOS
+  office: Office
+  tel: Tel
+  fax: Fax
+  email: Email
+  view_cv: Curriculum Vitae
+  search_placeholder: Type to filter (title, author, journal, year)
+  pub_desc: International journal articles and patents, in reverse chronological order.
+  cv_desc: Education, academic & professional experience, honors and academic activities.
+  gallery_desc: Conferences, fieldwork and moments from the lab.
+  gallery_empty: Photos will be added soon.
+  education: Education
+  experience: Academic & Professional Experience
+  awards: Honors & Awards
+  memberships: Society Memberships
+  editorial: Editorial Activities
+  teaching: Teaching
+  registration: Registration
+  application: Application
+  present: present
+ko:
+  lang_label: 한국어
+  other_lang_label: EN
+  nav_about: 소개
+  nav_publications: 연구실적
+  nav_cv: 이력
+  nav_gallery: 갤러리
+  biography: 소개
+  research: 연구 분야
+  selected: 대표 논문
+  all_publications: 전체 연구실적 보기
+  articles: 국제 학술지 논문
+  patents: 특허
+  papers_count: 국제 학술지 논문
+  patents_count: 특허
+  awards_count: 수상
+  years_count: 년 재직
+  office: 연구실
+  tel: 전화
+  fax: 팩스
+  email: 이메일
+  view_cv: 이력 보기
+  search_placeholder: 제목·저자·저널·연도로 검색
+  pub_desc: 국제 학술지 논문과 특허를 최신순으로 정리했습니다.
+  cv_desc: 학력, 경력, 수상 및 학술 활동
+  gallery_desc: 학회, 현장 조사, 연구실의 순간들
+  gallery_empty: 사진이 곧 추가될 예정입니다.
+  education: 학력
+  experience: 경력
+  awards: 수상
+  memberships: 학회 활동
+  editorial: 편집 활동
+  teaching: 강의
+  registration: 등록
+  application: 출원
+  present: 현재

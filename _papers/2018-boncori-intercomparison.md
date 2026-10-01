@@ -1,0 +1,35 @@
+---
+title: "Intercomparison and Validation of SAR-Based Ice Velocity Measurement Techniques within the Greenland Ice Sheet CCI Project"
+authors:
+  - "John Peter Merryman Boncori"
+  - "Morten Langer Andersen"
+  - "Jørgen Dall"
+  - "Anders Kusk"
+  - "Martijn Kamstra"
+  - "Signe Bech Andersen"
+  - "Noa Bechor"
+  - "Suzanne Bevan"
+  - "Christian Bignami"
+  - "Noel Gourmelen"
+  - "Ian Joughin"
+  - "Hyung-Sup Jung"
+  - "Adrian Luckman"
+  - "Jeremie Mouginot"
+  - "Julia Neelmeijer"
+  - "Eric Rignot"
+  - "Kilian Scharrer"
+  - "Thomas Nagler"
+  - "Bernd Scheuchl"
+  - "Tazio Strozzi"
+journal: "Remote Sensing"
+abbr: "RS"
+volume: "10"
+issue: "6"
+pages: "929"
+year: 2018
+date: 2018-01-26
+doi: "10.3390/rs10060929"
+link: ""
+pdf: ""
+selected: false
+---

@@ -1,0 +1,52 @@
+{%- comment -%} 연구실적 페이지 본문 (영문/국문 공용). 논문: _papers/, 특허: _patents/ {%- endcomment -%}
+{%- assign lang = include.lang | default: 'en' -%}
+{%- assign t = site.data.i18n[lang] -%}
+{%- assign papers = site.papers | sort: 'date' | reverse | group_by: 'year' -%}
+{%- assign patents = site.patents | sort: 'date' | reverse | group_by: 'year' -%}
+
+<nav class="pub-tabs">
+  <a href="#articles">{{ t.articles }} <span>{{ site.papers.size }}</span></a>
+  <a href="#patents">{{ t.patents }} <span>{{ site.patents.size }}</span></a>
+  {% if site.cms %}<a class="admin-only pub-add" href="{{ site.cms }}" target="_blank" rel="noopener"><i class="fa-solid fa-plus"></i> {% if lang == 'ko' %}논문·특허 추가{% else %}Add paper / patent{% endif %}</a>{% endif %}
+</nav>
+
+{% if site.bib_search %}
+<script src="{{ '/assets/js/bibsearch.js' | relative_url | bust_file_cache }}" type="module"></script>
+<input type="text" id="bibsearch" spellcheck="false" autocomplete="off" class="search bibsearch-form-input" placeholder="{{ t.search_placeholder }}">
+{% endif %}
+
+<div class="publications">
+  <h2 class="pub-section" id="articles">{{ t.articles }}</h2>
+  {%- for g in papers %}
+  <h2 class="bibliography">{{ g.name }}</h2>
+  <ol class="bibliography">
+    {%- for p in g.items %}
+    {% include paper.liquid p=p %}
+    {%- endfor %}
+  </ol>
+  {%- endfor %}
+
+  <h2 class="pub-section" id="patents">{{ t.patents }}</h2>
+  {%- for g in patents %}
+  <h2 class="bibliography">{{ g.name }}</h2>
+  <ol class="bibliography">
+    {%- for p in g.items %}
+    {% include patent.liquid p=p lang=lang %}
+    {%- endfor %}
+  </ol>
+  {%- endfor %}
+</div>
+
+<script>
+  // 관리자 모드: 이 페이지를 ?admin=1 로 한 번 열면 [추가] 버튼이 보입니다 (?admin=0 으로 해제)
+  (function () {
+    try {
+      var m = /[?&]admin=([01])/.exec(location.search);
+      if (m) {
+        if (m[1] === "1") localStorage.setItem("pj-admin", "1");
+        else localStorage.removeItem("pj-admin");
+      }
+      if (localStorage.getItem("pj-admin") === "1") document.body.classList.add("is-admin");
+    } catch (e) {}
+  })();
+</script>

@@ -1,0 +1,97 @@
+{%- comment -%}
+  al-folio 기본 헤더를 한/영 2개 언어용으로 수정한 버전.
+  - 현재 언어(page.lang)의 페이지만 메뉴에 표시
+  - 오른쪽 EN | 한국어 버튼: 같은 ref 값을 가진 다른 언어 페이지로 이동
+{%- endcomment -%}
+{%- assign cur_lang = page.lang | default: 'en' -%}
+{%- if cur_lang == 'ko' -%}{%- assign other_lang = 'en' -%}{%- else -%}{%- assign other_lang = 'ko' -%}{%- endif -%}
+{%- assign t = site.data.i18n[cur_lang] -%}
+{%- assign me = site.data.profile -%}
+{%- assign lang_pages = site.pages | where: 'lang', cur_lang -%}
+{%- if cur_lang == 'en' -%}
+  {%- assign untagged = site.pages | where_exp: 'p', 'p.lang == nil' -%}
+  {%- assign lang_pages = lang_pages | concat: untagged -%}
+{%- endif -%}
+{%- assign home = lang_pages | where: 'ref', 'about' | first -%}
+{%- assign other_url = nil -%}
+{%- if page.ref -%}
+  {%- assign other = site.pages | where: 'ref', page.ref | where: 'lang', other_lang | first -%}
+  {%- if other -%}{%- assign other_url = other.url -%}{%- endif -%}
+{%- endif -%}
+{%- unless other_url -%}
+  {%- if other_lang == 'ko' -%}{%- assign other_url = '/ko/' -%}{%- else -%}{%- assign other_url = '/' -%}{%- endif -%}
+{%- endunless -%}
+<header>
+  <nav id="navbar" class="navbar navbar-light navbar-expand-sm {% if site.navbar_fixed %}fixed-top{% else %}sticky-top{% endif %}" role="navigation">
+    <div class="container">
+      {% unless page.ref == 'about' %}
+        <a class="navbar-brand title font-weight-lighter" href="{{ home.url | default: '/' | relative_url }}">
+          {%- if cur_lang == 'ko' -%}
+            <span class="font-weight-bold">{{ me.name_ko }}</span>
+          {%- else -%}
+            <span class="font-weight-bold">{{ me.name_en | split: ' ' | first }}</span> {{ me.name_en | split: ' ' | last }}
+          {%- endif -%}
+        </a>
+      {% endunless %}
+      <!-- Navbar Toggle -->
+      <button
+        class="navbar-toggler collapsed navbar-toggler-main"
+        type="button"
+        data-nav-toggle="navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar top-bar"></span>
+        <span class="icon-bar middle-bar"></span>
+        <span class="icon-bar bottom-bar"></span>
+      </button>
+
+      <div class="collapse navbar-collapse navbar-collapse-main" id="navbarNav">
+        <ul class="navbar-nav navbar-menu-list flex-nowrap">
+          <li class="nav-item {% if page.ref == 'about' %}active{% endif %}">
+            <a class="nav-link" href="{{ home.url | default: '/' | relative_url }}">{{ t.nav_about }}</a>
+          </li>
+          {%- assign sorted_pages = lang_pages | sort: 'nav_order' -%}
+          {%- for p in sorted_pages -%}
+            {%- if p.nav and p.ref != 'about' %}
+              <li class="nav-item {% if page.url == p.url %}active{% endif %}">
+                <a class="nav-link" href="{{ p.url | relative_url }}">{{ p.title }}</a>
+              </li>
+            {%- endif -%}
+          {%- endfor %}
+          {% if site.search_enabled %}
+            <li class="nav-item">
+              <button id="search-toggle" type="button" title="Search" aria-label="Open search">
+                <span class="nav-link"><i class="fa-solid fa-magnifying-glass"></i></span>
+              </button>
+            </li>
+          {% endif %}
+          <!-- Language switch -->
+          <li class="nav-item lang-switch">
+            <a class="nav-link" href="{{ other_url | relative_url }}" hreflang="{{ other_lang }}" lang="{{ other_lang }}" title="{% if other_lang == 'ko' %}한국어로 보기{% else %}View in English{% endif %}">
+              <span class="{% if cur_lang == 'en' %}is-on{% endif %}">EN</span><span class="sep">|</span><span class="{% if cur_lang == 'ko' %}is-on{% endif %}">한국어</span>
+            </a>
+          </li>
+          {% if site.enable_darkmode %}
+            <li class="toggle-container">
+              <button id="light-toggle" type="button" title="Change theme" aria-label="Change color theme">
+                <i class="fa-half-sun-moon" id="light-toggle-system"></i>
+                <i class="fa-solid fa-moon" id="light-toggle-dark"></i>
+                <i class="fa-solid fa-sun" id="light-toggle-light"></i>
+              </button>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+  {% if site.enable_progressbar %}
+    <progress id="progress" value="0">
+      <div class="progress-container">
+        <span class="progress-bar"></span>
+      </div>
+    </progress>
+  {% endif %}
+</header>

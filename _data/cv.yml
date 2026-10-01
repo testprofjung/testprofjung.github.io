@@ -1,0 +1,212 @@
+# CV (영문 / 국문) — 웹 편집기(Pages CMS) 또는 이 파일을 직접 수정하면 CV 페이지(영문·국문)에 반영됩니다.
+# 새 항목은 각 목록의 맨 위에 추가하세요.
+
+education:
+  - period: 1998–2007
+    degree_en: Ph.D., Remote Sensing
+    degree_ko: 원격탐사 박사
+    school_en: Yonsei University, Seoul, Korea
+    school_ko: 연세대학교
+  - period: 1996–1998
+    degree_en: M.S., Geophysics
+    degree_ko: 지구물리학 석사
+    school_en: Yonsei University, Seoul, Korea
+    school_ko: 연세대학교
+  - period: 1992–1996
+    degree_en: B.S., Geology
+    degree_ko: 지질학 학사
+    school_en: Yonsei University, Seoul, Korea
+    school_ko: 연세대학교
+
+experience:
+  - period: Mar. 2018 – present
+    role_en: Professor
+    role_ko: 교수
+    org_en: Dept. of Geoinformatics, The University of Seoul
+    org_ko: 서울시립대학교 공간정보공학과
+  - period: Jul. 2023 – Feb. 2024
+    role_en: Hamilton Visiting Fellow
+    role_ko: Hamilton Visiting Fellow
+    org_en: Dept. of Earth Sciences, Southern Methodist University
+    org_ko: 미국 Southern Methodist University 지구과학과
+  - period: Mar. 2022 – Feb. 2023
+    role_en: Department Chair
+    role_ko: 학과장
+    org_en: Dept. of Geoinformatics, The University of Seoul
+    org_ko: 서울시립대학교 공간정보공학과
+  - period: Jul. 2019 – Jan. 2020
+    role_en: Visiting Professor
+    role_ko: 방문교수
+    org_en: Dept. of Geographical Sciences, University of Maryland, College Park
+    org_ko: 미국 University of Maryland, College Park 지리학과
+  - period: Mar. 2017 – Feb. 2019
+    role_en: Vice Provost
+    role_ko: Vice Provost
+    org_en: The University of Seoul
+    org_ko: 서울시립대학교
+  - period: Sep. 2015 – Feb. 2017
+    role_en: Department Chair
+    role_ko: 학과장
+    org_en: Dept. of Geoinformatics, The University of Seoul
+    org_ko: 서울시립대학교 공간정보공학과
+  - period: Mar. 2013 – Feb. 2015
+    role_en: Vice Dean
+    role_ko: 부학장
+    org_en: College of Urban Sciences, The University of Seoul
+    org_ko: 서울시립대학교 도시과학대학
+  - period: Dec. 2011 – Jun. 2012
+    role_en: Visiting Scientist
+    role_ko: 방문연구원
+    org_en: Cascade Volcano Observatory, USGS
+    org_ko: 미국지질조사국(USGS) Cascade Volcano Observatory
+  - period: Mar. 2009 – Feb. 2013
+    role_en: Assistant Professor
+    role_ko: 조교수
+    org_en: Dept. of Geoinformatics, The University of Seoul
+    org_ko: 서울시립대학교 공간정보공학과
+
+awards:
+  - year: "2025"
+    title_en: Commendation from the Minister of Environment
+    title_ko: 환경부장관 표창
+    org_en: Ministry of Environment
+    org_ko: 환경부
+  - year: "2024"
+    title_en: Special Award, Journal Section
+    title_ko: 특별상 (학회지 부문)
+    org_en: 40th Anniversary of the Korean Society of Remote Sensing
+    org_ko: 대한원격탐사학회 창립 40주년
+  - year: "2024"
+    title_en: Academic Award
+    title_ko: 학술상
+    org_en: GeoAI Data Society
+    org_ko: GeoAI데이터학회
+  - year: "2024"
+    title_en: Achievement Award
+    title_ko: 공로상
+    org_en: GeoAI Data Society
+    org_ko: GeoAI데이터학회
+  - year: "2022–2023"
+    title_en: Hamilton Visiting Fellow
+    title_ko: Hamilton Visiting Fellow
+    org_en: Southern Methodist University
+    org_ko: 미국 Southern Methodist University
+  - year: "2022"
+    title_en: Excellent Paper Award
+    title_ko: 우수논문상
+    org_en: Korean Federation of Science and Technology Societies (KOFST)
+    org_ko: 한국과학기술단체총연합회
+  - year: "2021"
+    title_en: Achievement Award
+    title_ko: 공로상
+    org_en: Korean Symposium on Remote Sensing
+    org_ko: Korean Symposium on Remote Sensing
+  - year: "2016"
+    title_en: Best Paper Award
+    title_ko: 우수논문상
+    org_en: Korean Society of Remote Sensing
+    org_ko: 대한원격탐사학회
+  - year: "2015"
+    title_en: Best Paper Award
+    title_ko: 우수논문상
+    org_en: IEEE International Geoscience and Remote Sensing Symposium (IGARSS)
+    org_ko: IEEE International Geoscience and Remote Sensing Symposium (IGARSS)
+
+memberships:
+  - period: 2021–2023
+    role_en: President
+    role_ko: 회장
+    org_en: GeoAI Data Society
+    org_ko: GeoAI데이터학회
+  - period: 2020–present
+    role_en: Academic Director
+    role_ko: 학술이사
+    org_en: Korean Society of Remote Sensing
+    org_ko: 대한원격탐사학회
+  - period: 2020–present
+    role_en: Liaison Director
+    role_ko: 협력이사
+    org_en: The Korean Society of Economic and Environmental Geology
+    org_ko: 대한자원환경지질학회
+  - period: 2016–present
+    role_en: Senior Member
+    role_ko: Senior Member
+    org_en: IEEE
+    org_ko: IEEE
+  - period: 2007–present
+    role_en: Member
+    role_ko: 회원
+    org_en: American Geophysical Union (AGU)
+    org_ko: American Geophysical Union (AGU)
+  - period: 2007–present
+    role_en: Member
+    role_ko: 회원
+    org_en: American Society of Photogrammetry and Remote Sensing (ASPRS)
+    org_ko: American Society of Photogrammetry and Remote Sensing (ASPRS)
+  - period: 2013–present
+    role_en: Member of the Board of Directors
+    role_ko: 이사
+    org_en: Korean Society of Economic and Environmental Geology
+    org_ko: 대한자원환경지질학회
+  - period: 2008–present
+    role_en: Life Member
+    role_ko: 평생회원
+    org_en: Korea Spatial Information Society
+    org_ko: 한국공간정보학회
+  - period: 2008–present
+    role_en: Member
+    role_ko: 회원
+    org_en: Korean Society of Surveying, Geodesy, Photogrammetry and Cartography
+    org_ko: 한국측량학회
+
+editorial:
+  - period: 2016–present
+    role_en: Associate Editor
+    role_ko: 부편집장 (Associate Editor)
+    org_en: IEEE Geoscience and Remote Sensing Letters
+    org_ko: IEEE Geoscience and Remote Sensing Letters
+  - period: 2017–2021
+    role_en: Editor-in-Chief
+    role_ko: 편집위원장
+    org_en: Korean Journal of Remote Sensing
+    org_ko: 대한원격탐사학회지
+  - period: 2019–present
+    role_en: Associate Editor
+    role_ko: 부편집장 (Associate Editor)
+    org_en: Arabian Journal of Geosciences
+    org_ko: Arabian Journal of Geosciences
+  - period: 2019–present
+    role_en: Editorial Board Member
+    role_ko: 편집위원
+    org_en: Remote Sensing
+    org_ko: Remote Sensing
+  - period: 2019–present
+    role_en: Editorial Board Member
+    role_ko: 편집위원
+    org_en: Applied Sciences
+    org_ko: Applied Sciences
+  - period: 2013–2016
+    role_en: Editor
+    role_ko: 편집위원
+    org_en: Korean Journal of Remote Sensing
+    org_ko: 대한원격탐사학회지
+
+teaching:
+  - en: Deep Learning in Geoinformatics
+    ko: 공간정보 딥러닝
+  - en: Spatial Information Programming
+    ko: 공간정보 프로그래밍
+  - en: Digital Cartography
+    ko: 디지털 지도학
+  - en: Remote Sensing
+    ko: 원격탐사
+  - en: Advanced Topics in Remote Sensing
+    ko: 원격탐사 특론
+  - en: Microwave Remote Sensing
+    ko: 마이크로파 원격탐사
+  - en: Sensor Modeling and Satellite Images
+    ko: 센서 모델링과 위성영상
+  - en: Terrain Analysis
+    ko: 지형 분석
+  - en: Radar Interferometry
+    ko: 레이더 간섭기법

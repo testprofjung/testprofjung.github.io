@@ -1,0 +1,27 @@
+{%- comment -%} 갤러리 페이지 본문 (영문/국문 공용). 내용: _data/gallery.yml {%- endcomment -%}
+{%- assign lang = include.lang | default: 'en' -%}
+{%- assign t = site.data.i18n[lang] -%}
+{%- assign gal = site.data.gallery.items -%}
+{% if gal and gal.size > 0 %}
+<div class="gallery-grid">
+  {%- for g in gal %}
+  {%- if lang == 'ko' and g.caption_ko and g.caption_ko != "" -%}{%- assign cap = g.caption_ko -%}{%- else -%}{%- assign cap = g.caption -%}{%- endif %}
+  <figure class="gallery-item">
+    <a href="{{ g.image | relative_url }}" data-lightbox="gallery" data-title="{{ cap | escape }}">
+      <img src="{{ g.image | relative_url }}" alt="{{ cap | default: 'Gallery photo' | escape }}" loading="lazy">
+    </a>
+    {%- if cap or g.date %}
+    <figcaption>
+      {{ cap }}
+      {%- if g.date %}<small>{% if g.category %}{{ g.category }} · {% endif %}{% if lang == 'ko' %}{{ g.date | date: "%Y년 %-m월" }}{% else %}{{ g.date | date: "%B %Y" }}{% endif %}</small>{% endif %}
+    </figcaption>
+    {%- endif %}
+  </figure>
+  {%- endfor %}
+</div>
+{% else %}
+<div class="gallery-empty">
+  <i class="fa-regular fa-images"></i>
+  <p>{{ t.gallery_empty }}</p>
+</div>
+{% endif %}

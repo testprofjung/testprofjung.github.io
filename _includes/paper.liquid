@@ -1,0 +1,35 @@
+{%- comment -%} 논문 1편 (al-folio bibliography 마크업과 동일한 구조) {%- endcomment -%}
+{%- assign p = include.p -%}
+{%- assign names = site.data.profile.author_names -%}
+<li>
+  <div class="row">
+    <div class="col col-sm-2 abbr">
+      {%- if p.abbr and p.abbr != "" %}<abbr class="badge rounded w-100">{{ p.abbr }}</abbr>{% endif -%}
+    </div>
+    <div class="col-sm-8">
+      <div class="title">{{ p.title }}</div>
+      <div class="author">
+        {%- for a in p.authors -%}
+          {%- if forloop.last and forloop.length > 1 %}{% if forloop.length > 2 %},{% endif %} and {% elsif forloop.first == false %}, {% endif -%}
+          {%- if names contains a -%}<em>{{ a }}</em>{%- else -%}{{ a }}{%- endif -%}
+        {%- endfor -%}
+      </div>
+      <div class="periodical">
+        <em>{{ p.journal }}</em>
+        {%- if p.volume and p.volume != "" %}, {{ p.volume }}{% if p.issue and p.issue != "" %}({{ p.issue }}){% endif %}{% endif -%}
+        {%- if p.pages and p.pages != "" %}, {{ p.pages }}{% endif -%}
+        , {{ p.year }}
+      </div>
+      {%- assign has_doi = false -%}{%- if p.doi and p.doi != "" -%}{%- assign has_doi = true -%}{%- endif -%}
+      {%- assign has_pdf = false -%}{%- if p.pdf and p.pdf != "" -%}{%- assign has_pdf = true -%}{%- endif -%}
+      {%- assign has_url = false -%}{%- if p.link and p.link != "" -%}{%- assign has_url = true -%}{%- endif -%}
+      {%- if has_doi or has_pdf or has_url %}
+      <div class="links">
+        {%- if has_doi %}<a href="https://doi.org/{{ p.doi }}" class="btn btn-sm z-depth-0" role="button" target="_blank" rel="noopener">DOI</a>{% endif -%}
+        {%- if has_pdf %}<a href="{% if p.pdf contains '://' %}{{ p.pdf }}{% else %}{{ p.pdf | relative_url }}{% endif %}" class="btn btn-sm z-depth-0" role="button" target="_blank" rel="noopener">PDF</a>{% endif -%}
+        {%- if has_url %}<a href="{{ p.link }}" class="btn btn-sm z-depth-0" role="button" target="_blank" rel="noopener">HTML</a>{% endif -%}
+      </div>
+      {%- endif %}
+    </div>
+  </div>
+</li>

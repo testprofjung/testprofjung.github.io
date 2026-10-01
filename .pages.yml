@@ -1,0 +1,204 @@
+# Pages CMS 설정 — https://app.pagescms.org 에서 GitHub 계정으로 로그인하면
+# 아래 항목을 웹 화면에서 추가·수정할 수 있습니다. 저장하면 저장소에 커밋되고,
+# GitHub Actions가 사이트를 다시 빌드합니다(약 3~5분).
+# 저장 권한은 이 저장소에 쓰기 권한이 있는 GitHub 계정만 가집니다.
+
+media:
+  input: assets/img
+  output: /assets/img
+
+content:
+  # ---------------- 논문 (1편 = 파일 1개) ----------------
+  - name: papers
+    label: 논문 (Journal Articles)
+    type: collection
+    path: _papers
+    filename: "{year}-{month}-{day}-{primary}.md"
+    view:
+      fields: [title, journal, year]
+      primary: title
+      sort: [date, year, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - { name: title, label: 논문 제목, type: string, required: true }
+      - { name: authors, label: "저자 (한 칸에 한 명, 예: Hyung-Sup Jung)", type: string, list: true, required: true }
+      - { name: journal, label: 저널명, type: string, required: true }
+      - { name: abbr, label: "저널 약어 배지 (예: RSE, TGRS, RS)", type: string }
+      - { name: volume, label: 권(Volume), type: string }
+      - { name: issue, label: 호(Issue), type: string }
+      - { name: pages, label: "페이지 / 논문번호", type: string }
+      - { name: year, label: 출판 연도, type: number, required: true }
+      - { name: date, label: "출판일 (같은 연도 안의 정렬용)", type: date, required: true }
+      - { name: doi, label: "DOI (예: 10.1016/j.rse.2025.114577)", type: string }
+      - { name: link, label: 논문 페이지 링크 (선택), type: string }
+      - name: pdf
+        label: PDF 파일 (선택)
+        type: file
+        options:
+          input: assets/pdf
+          output: /assets/pdf
+      - { name: selected, label: 소개 페이지 '대표 논문'에 표시, type: boolean, default: false }
+
+  # ---------------- 특허 (1건 = 파일 1개) ----------------
+  - name: patents
+    label: 특허 (Patents)
+    type: collection
+    path: _patents
+    filename: "{year}-{month}-{day}-{primary}.md"
+    view:
+      fields: [title, country, number, date]
+      primary: title
+      default:
+        sort: date
+        order: desc
+    fields:
+      - { name: title, label: 특허명, type: string, required: true }
+      - { name: inventors, label: "발명자 (예: Jung, H.-S., Lee, W.-J.)", type: string, required: true }
+      - name: country
+        label: 국가
+        type: select
+        default: Korea
+        options:
+          values: [Korea, USA, Japan, Europe, World]
+      - name: kind
+        label: 구분
+        type: select
+        default: Registration
+        options:
+          values: [Registration, Application]
+      - { name: number, label: "등록/출원 번호 (예: 10-2853992)", type: string, required: true }
+      - { name: date, label: 등록/출원일, type: date, required: true }
+      - { name: year, label: 연도, type: number, required: true }
+
+  # ---------------- 사진 갤러리 ----------------
+  - name: gallery
+    label: 사진 갤러리 (Gallery)
+    type: file
+    path: _data/gallery.yml
+    format: yaml
+    fields:
+      - name: items
+        label: 사진 — 위에 있을수록 먼저 표시
+        type: object
+        list: true
+        fields:
+          - name: image
+            label: 사진
+            type: image
+            required: true
+            options:
+              input: assets/img/gallery
+              output: /assets/img/gallery
+          - { name: caption, label: 설명 (영문), type: string }
+          - { name: caption_ko, label: 설명 (국문), type: string }
+          - { name: date, label: 날짜, type: date }
+          - name: category
+            label: 분류
+            type: select
+            options:
+              values: [Conference, Fieldwork, Lab, Award, Event]
+
+  # ---------------- 기본 정보 · 소개 · 연구분야 ----------------
+  - name: profile
+    label: 소개·연락처·연구분야 (Profile)
+    type: file
+    path: _data/profile.yml
+    format: yaml
+    fields:
+      - { name: name_en, label: 이름 (영문), type: string }
+      - { name: name_ko, label: 이름 (국문), type: string }
+      - { name: photo, label: 프로필 사진, type: image }
+      - { name: title_en, label: 직위 (영문), type: string }
+      - { name: title_ko, label: 직위 (국문), type: string }
+      - { name: department_en, label: 학과 (영문), type: string }
+      - { name: department_ko, label: 학과 (국문), type: string }
+      - { name: university_en, label: 소속 (영문), type: string }
+      - { name: university_ko, label: 소속 (국문), type: string }
+      - { name: address_en, label: 주소 (영문), type: string }
+      - { name: address_ko, label: 주소 (국문), type: string }
+      - { name: phone, label: 전화, type: string }
+      - { name: fax, label: 팩스, type: string }
+      - { name: email, label: 이메일, type: string }
+      - { name: scholar, label: Google Scholar 주소, type: string }
+      - { name: researchgate, label: ResearchGate 주소, type: string }
+      - { name: author_names, label: 논문 목록에서 굵게 표시할 이름 표기, type: string, list: true }
+      - { name: bio_en, label: 소개글 (영문), type: text }
+      - { name: bio_ko, label: 소개글 (국문), type: text }
+      - name: research
+        label: 연구 분야
+        type: object
+        list: true
+        fields:
+          - { name: title_en, label: 제목 (영문), type: string }
+          - { name: title_ko, label: 제목 (국문), type: string }
+          - { name: desc_en, label: 설명 (영문), type: text }
+          - { name: desc_ko, label: 설명 (국문), type: text }
+          - { name: icon, label: "아이콘 (Font Awesome 클래스, 예: fa-solid fa-satellite)", type: string }
+      - { name: faculty_since, label: 임용 연도, type: number }
+
+  # ---------------- 이력 (CV) ----------------
+  - name: cv
+    label: 이력 (CV)
+    type: file
+    path: _data/cv.yml
+    format: yaml
+    fields:
+      - name: education
+        label: 학력
+        type: object
+        list: true
+        fields:
+          - { name: period, label: 기간, type: string }
+          - { name: degree_en, label: 학위 (영문), type: string }
+          - { name: degree_ko, label: 학위 (국문), type: string }
+          - { name: school_en, label: 학교 (영문), type: string }
+          - { name: school_ko, label: 학교 (국문), type: string }
+      - name: experience
+        label: 경력 — 새 항목은 맨 위에
+        type: object
+        list: true
+        fields:
+          - { name: period, label: "기간 (예: Mar. 2018 – present)", type: string }
+          - { name: role_en, label: 직위 (영문), type: string }
+          - { name: role_ko, label: 직위 (국문), type: string }
+          - { name: org_en, label: 기관 (영문), type: string }
+          - { name: org_ko, label: 기관 (국문), type: string }
+      - name: awards
+        label: 수상 — 새 항목은 맨 위에
+        type: object
+        list: true
+        fields:
+          - { name: year, label: 연도, type: string }
+          - { name: title_en, label: 수상명 (영문), type: string }
+          - { name: title_ko, label: 수상명 (국문), type: string }
+          - { name: org_en, label: 수여 기관 (영문), type: string }
+          - { name: org_ko, label: 수여 기관 (국문), type: string }
+      - name: memberships
+        label: 학회 활동
+        type: object
+        list: true
+        fields:
+          - { name: period, label: 기간, type: string }
+          - { name: role_en, label: 직책 (영문), type: string }
+          - { name: role_ko, label: 직책 (국문), type: string }
+          - { name: org_en, label: 학회 (영문), type: string }
+          - { name: org_ko, label: 학회 (국문), type: string }
+      - name: editorial
+        label: 편집 활동
+        type: object
+        list: true
+        fields:
+          - { name: period, label: 기간, type: string }
+          - { name: role_en, label: 직책 (영문), type: string }
+          - { name: role_ko, label: 직책 (국문), type: string }
+          - { name: org_en, label: 학술지 (영문), type: string }
+          - { name: org_ko, label: 학술지 (국문), type: string }
+      - name: teaching
+        label: 강의
+        type: object
+        list: true
+        fields:
+          - { name: en, label: 과목명 (영문), type: string }
+          - { name: ko, label: 과목명 (국문), type: string }

@@ -1,0 +1,69 @@
+# 기본 정보 · 소개 · 연구분야 (영문 / 국문)
+# 웹 편집기(Pages CMS) 또는 이 파일을 직접 수정하면 About 페이지(영문·국문)에 반영됩니다.
+
+name_en: Hyung-Sup Jung
+name_ko: 정형섭
+photo: /assets/img/profile.jpg
+
+title_en: Professor
+title_ko: 교수
+department_en: Department of Geoinformatics
+department_ko: 공간정보공학과
+university_en: The University of Seoul
+university_ko: 서울시립대학교
+
+address_en: 163 Seoulsiripdae-ro, Dongdaemun-gu, Seoul 02504, Republic of Korea
+address_ko: (02504) 서울특별시 동대문구 서울시립대로 163
+phone: 82-2-6490-2892
+fax: 82-2-6490-2880
+email: hsjung@uos.ac.kr
+scholar: https://scholar.google.com/citations?user=BCLhGMwAAAAJ&hl=ko
+researchgate: https://www.researchgate.net/profile/Hyung-Sup-Jung
+
+# 논문 목록에서 굵게 표시할 교수님 이름 표기
+author_names: ["Hyung-Sup Jung", "H.-S. Jung", "H. S. Jung", "H.S. Jung"]
+
+bio_en: |
+  **Hyung-Sup Jung** is a Professor in the Department of Geoinformatics at the University of Seoul, where he has been on the faculty since 2009. He received his Ph.D. in Remote Sensing (2007), M.S. in Geophysics and B.S. in Geology from Yonsei University.
+
+  He has been a Hamilton Visiting Fellow at Southern Methodist University (2023–2024), a Visiting Professor at the University of Maryland, College Park (2019–2020), and a Visiting Scientist at the USGS Cascade Volcano Observatory (2011–2012). At the University of Seoul he has served as Vice Provost, Department Chair and Vice Dean of the College of Urban Sciences. He was President of the GeoAI Data Society (2021–2023) and Editor-in-Chief of the Korean Journal of Remote Sensing (2017–2021), and is an Associate Editor of *IEEE Geoscience and Remote Sensing Letters*.
+
+bio_ko: |
+  **정형섭** 교수는 2009년부터 서울시립대학교 공간정보공학과에 재직하고 있습니다. 연세대학교에서 지질학 학사, 지구물리학 석사, 원격탐사 박사 학위(2007)를 받았습니다.
+
+  미국 Southern Methodist University Hamilton Visiting Fellow(2023–2024), University of Maryland, College Park 방문교수(2019–2020), 미국지질조사국(USGS) Cascade Volcano Observatory 방문연구원(2011–2012)을 지냈습니다. 서울시립대학교에서 Vice Provost, 학과장, 도시과학대학 부학장을 역임했으며, GeoAI데이터학회 회장(2021–2023)과 대한원격탐사학회지 편집위원장(2017–2021)을 지냈고, 현재 *IEEE Geoscience and Remote Sensing Letters* 부편집장으로 활동하고 있습니다.
+
+research:
+  - title_en: Remote Sensing Applications to Natural Hazards
+    title_ko: 자연재해 원격탐사
+    desc_en: Applications of remote sensing techniques to earthquake, volcanic eruption, tectonic movement, subsidence, climate change, flood, and wildfire monitoring — including coal-mining subsidence in Korea, the San Andreas Fault zone, the Los Angeles basin, and the Seguam, Okmok and Augustine volcanoes in Alaska.
+    desc_ko: 지진, 화산 분화, 지각 변동, 지반 침하, 기후 변화, 홍수, 산불 모니터링을 위한 원격탐사 기술 응용. 국내 탄광 지반침하, 샌안드레아스 단층대, LA 분지 지반침하, 알래스카 Seguam·Okmok·Augustine 화산 변형 연구.
+    icon: fa-solid fa-volcano
+  - title_en: Radar Interferometry
+    title_ko: 레이더 간섭기법
+    desc_en: Advanced radar interferometric techniques including Multiple-Aperture Interferometry (MAI), Multi-Temporal SAR Interferometry (MTInSAR) and MAI-based ionospheric correction, with over 100 times better correction performance than conventional methods.
+    desc_ko: 다중개구간섭기법(MAI), 다중시기 SAR 간섭기법(MTInSAR), MAI 기반 전리층 보정 등 고급 레이더 간섭기법 개발. 기존 방법 대비 100배 이상 향상된 보정 성능.
+    icon: fa-solid fa-satellite-dish
+  - title_en: Deep Learning in Remote Sensing
+    title_ko: 원격탐사 딥러닝
+    desc_en: Ship and oil-spill detection from X-band SAR images using ANN, CNN and M2Det models, CNN-based ship detection, and U-Net models for forest vertical structure and land-use classification.
+    desc_ko: ANN·CNN·M2Det 모델을 이용한 X밴드 SAR 영상 선박 및 유류 유출 탐지, CNN 기반 선박 탐지, U-Net 기반 산림 수직구조 및 토지이용 분류.
+    icon: fa-solid fa-brain
+  - title_en: Forestry Remote Sensing
+    title_ko: 산림 원격탐사
+    desc_en: Algorithms for detecting trees, estimating tree height and determining horizontal and vertical forest structure using full-waveform LiDAR, and machine-learning classification of forest vertical structure from aerial orthophotos and LiDAR.
+    desc_ko: 풀웨이브폼 LiDAR를 이용한 수목 탐지, 수고 추정, 산림 수평·수직 구조 분석 알고리즘 개발 및 항공 정사영상·LiDAR 기반 머신러닝 산림 수직구조 분류.
+    icon: fa-solid fa-tree
+  - title_en: Sensor Modeling
+    title_ko: 센서 모델링
+    desc_en: A new pushbroom sensor model using line-of-sight (LOS) vector adjustment for SPOT images, and an automated bias-compensation approach using a global DEM.
+    desc_ko: SPOT 영상을 위한 시선벡터(LOS) 조정 기반 푸시브룸 센서 모델 개발 및 전 지구 DEM을 이용한 자동 편향 보정 기법.
+    icon: fa-solid fa-satellite
+  - title_en: Satellite Image Processing
+    title_ko: 위성영상 처리
+    desc_en: Detection and restoration of defective lines in SPOT 4 SWIR images, efficient mosaicking considering seasonal variation for KOMPSAT-2, and multi-sensor fusion of Landsat 8 PAN and TIR images.
+    desc_ko: SPOT 4 SWIR 영상의 결함 라인 탐지 및 복원, 계절 변화를 고려한 KOMPSAT-2 모자이크, Landsat 8 PAN·TIR 영상 다중센서 융합.
+    icon: fa-solid fa-layer-group
+
+# 서울시립대 임용 연도 (About 페이지 "재직 연수" 계산용)
+faculty_since: 2009
