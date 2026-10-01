@@ -1,0 +1,16 @@
+{%- comment -%}
+  관리자 모드에서만 보이는 [수정]·[삭제] 버튼 (항목 1개 = 파일 1개 구조용).
+  include.path  : 저장소 안의 파일 경로 (예: _papers/2026-xxx.md) — 보통 doc.relative_path
+  include.image : (갤러리) 함께 지울 사진 경로 (예: /assets/img/gallery/a.jpg)
+  include.label : 확인 창에 보여줄 항목 이름
+{%- endcomment -%}
+{%- assign gh = 'https://github.com/' | append: site.github_repo -%}
+{%- assign br = site.github_branch | default: 'main' -%}
+{%- assign local_img = false -%}
+{%- if include.image and include.image != "" -%}{%- unless include.image contains '://' -%}{%- assign local_img = true -%}{%- endunless -%}{%- endif -%}
+<span class="item-tools admin-only">
+  <a href="{{ gh }}/edit/{{ br }}/{{ include.path }}" target="_blank" rel="noopener" title="수정 / Edit" aria-label="Edit"><i class="fa-solid fa-pen"></i></a>
+  <a class="item-del" href="{{ gh }}/delete/{{ br }}/{{ include.path }}" target="_blank" rel="noopener" title="삭제 / Delete" aria-label="Delete"
+     data-confirm-delete="{{ include.label | strip_html | strip_newlines | truncate: 80 | escape }}"
+     {% if local_img %}data-image-delete="{{ gh }}/delete/{{ br }}/{{ include.image | remove_first: '/' }}"{% endif %}><i class="fa-solid fa-trash"></i></a>
+</span>

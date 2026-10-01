@@ -9,7 +9,7 @@
       <abbr class="badge rounded w-100 patent-badge">{{ p.country }}</abbr>
     </div>
     <div class="col-sm-8">
-      <div class="title">{{ p.title }}</div>
+      <div class="title">{{ p.title }}{% include item_tools.liquid path=p.relative_path label=p.title %}</div>
       <div class="author">{{ p.inventors }}</div>
       <div class="periodical">
         {%- if lang == 'ko' -%}

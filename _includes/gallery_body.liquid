@@ -16,6 +16,7 @@
   {%- if lang == 'ko' and g.caption_ko and g.caption_ko != "" -%}{%- assign cap = g.caption_ko -%}{%- else -%}{%- assign cap = g.caption -%}{%- endif %}
   {%- if g.image contains '://' -%}{%- assign src = g.image -%}{%- else -%}{%- assign src = g.image | relative_url -%}{%- endif %}
   <figure class="gallery-item">
+    {% include item_tools.liquid path=g.relative_path image=g.image label=cap %}
     <a href="{{ src }}" data-lightbox="gallery" data-title="{{ cap | escape }}">
       <img src="{{ src }}" alt="{{ cap | default: 'Gallery photo' | escape }}" loading="lazy">
     </a>

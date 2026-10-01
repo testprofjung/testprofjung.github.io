@@ -23,13 +23,13 @@
     {%- if sec == 'teaching' %}
     <ul class="cvx-courses">
       {%- for c in items %}
-      <li>{{ c[k_title] }}</li>
+      {%- assign lbl = c[k_title] -%}<li>{{ lbl }}{% include item_tools.liquid path=c.relative_path label=lbl %}</li>
       {%- endfor %}
     </ul>
     {%- else %}
     <ul class="cvx-list">
       {%- for e in items %}
-      <li><span class="cvx-when">{{ e.period | replace: 'present', t.present }}</span><div><strong>{{ e[k_title] }}</strong><span>{{ e[k_org] }}</span></div></li>
+      <li><span class="cvx-when">{{ e.period | replace: 'present', t.present }}</span><div>{%- assign lbl = e[k_title] -%}<strong>{{ lbl }}{% include item_tools.liquid path=e.relative_path label=lbl %}</strong><span>{{ e[k_org] }}</span></div></li>
       {%- endfor %}
     </ul>
     {%- endif %}

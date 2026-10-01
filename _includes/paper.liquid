@@ -7,7 +7,7 @@
       {%- if p.abbr and p.abbr != "" %}<abbr class="badge rounded w-100">{{ p.abbr }}</abbr>{% endif -%}
     </div>
     <div class="col-sm-8">
-      <div class="title">{{ p.title }}</div>
+      <div class="title">{{ p.title }}{% include item_tools.liquid path=p.relative_path label=p.title %}</div>
       <div class="author">
         {%- for a in p.authors -%}
           {%- if forloop.last and forloop.length > 1 %}{% if forloop.length > 2 %},{% endif %} and {% elsif forloop.first == false %}, {% endif -%}

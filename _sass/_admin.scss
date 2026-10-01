@@ -97,3 +97,16 @@ html[data-theme="dark"] .pa-btn.primary { color: #050b1f; }
 .pa-research-item { padding: 14px; border-radius: 12px; border: 1px dashed var(--global-divider-color); }
 .pa-research-item:has([data-remove]:checked) { opacity: 0.45; }
 .pf-admin { justify-content: flex-start; margin: 14px 0 0; }
+
+/* 항목별 [수정]·[삭제] 버튼 (관리자 모드) */
+.item-tools { gap: 4px; margin-left: 8px; vertical-align: middle; }
+body.is-admin .item-tools.admin-only { display: inline-flex !important; }
+.item-tools a {
+  display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 8px;
+  border: 1px solid var(--global-divider-color); background: var(--global-card-bg-color);
+  color: var(--global-text-color-light) !important; font-size: 0.72rem; text-decoration: none !important;
+}
+.item-tools a:hover { border-color: var(--global-theme-color); color: var(--global-theme-color) !important; }
+.item-tools a.item-del:hover { border-color: #d64545; color: #d64545 !important; }
+.gallery-item { position: relative; }
+.gallery-item > .item-tools { position: absolute; top: 8px; right: 8px; z-index: 2; margin: 0; }
