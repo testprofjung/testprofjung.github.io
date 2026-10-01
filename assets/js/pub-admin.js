@@ -63,10 +63,24 @@
     return { dir: "_patents", name: pdate + "-" + slug(val("ptitle")) + ".md", body: plines.join("\n") };
   }
 
+  // 배포 시 HTML 압축기가 빈 태그를 지울 수 있으므로, 미리보기 칸이 없으면 만들어서 사용
+  function slot(sel, tag, cls) {
+    var box = dlg.querySelector(".pa-preview");
+    var el = box && box.querySelector(sel);
+    if (!el && box) {
+      el = document.createElement(tag);
+      if (cls) el.className = cls;
+      box.appendChild(el);
+    }
+    return el;
+  }
+
   function preview() {
     var f = build();
-    dlg.querySelector(".pa-path").textContent = f.dir + "/" + f.name;
-    dlg.querySelector(".pa-preview pre").textContent = f.body;
+    var path = slot(".pa-path", "p", "pa-path");
+    var pre = slot("pre", "pre");
+    if (path) path.textContent = f.dir + "/" + f.name;
+    if (pre) pre.textContent = f.body;
   }
 
   function syncKind() {
